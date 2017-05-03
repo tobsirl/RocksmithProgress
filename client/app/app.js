@@ -14,15 +14,16 @@ import {
 } from './app.config';
 
 import navbar from '../components/navbar/navbar.component';
-import footer from '../components/footer/footer.component';
-import main from './main/main.component';
+//import footer from '../components/footer/footer.component';
+import SongrecordComponent from './songrecord/songrecord.component';
+//import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 
 import './app.css';
 
 angular.module('rocksmithProgressApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap,
-  navbar, footer, main, constants, util
+  navbar, constants, util, SongrecordComponent
 ])
   .config(routeConfig);
 
