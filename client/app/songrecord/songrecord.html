@@ -1,1 +1,45 @@
-<div>This is the songrecord view.</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputSong" class="col-sm-2 control-label">Song</label>
+    <div class="col-sm-2">
+      <input ng-model="newSongRecord.songName" class="form-control" id="inputSongName" placeholder="Song">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputArtist" class="col-sm-2 control-label">Artist</label>
+    <div class="col-sm-2">
+      <input ng-model="newSongRecord.artist" class="form-control" id="inputArtist" placeholder="Artist">
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="inputDifficulty" class="col-sm-2 control-label">Difficulty</label>
+      <div class="col-sm-2">
+        <input ng-model="newSongRecord.difficulty" class="form-control" id="inputDifficulty" placeholder="Difficulty">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputSpeed" class="col-sm-2 control-label">Speed</label>
+      <div class="col-sm-2">
+        <input ng-model="newSongRecord.speed" class="form-control" id="inputSpeed" placeholder="Speed">
+      </div>
+    </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-success" ng-submit="createSongrecord()">Add Song</button>
+      {{newSongRecord.songName}}
+       {{newSongRecord.artist}}
+       {{newSongRecord.difficulty}}
+       {{newSongRecord.speed}}
+    </div>
+   
+  </div>
+</form>
+</html>
