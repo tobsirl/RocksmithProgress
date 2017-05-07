@@ -8,37 +8,37 @@ https://www.youtube.com/watch?v=XHM9uB2kNkU
 
 ## API
 
-| Routes               | Calls     | Scopes          | Description         |
-|:--------------------:|:---------:|:---------------:|:-------------------:|
-| /api/songrecords     | Get       | progress:index  | Get all songs       |
-| /api/songrecords     | Post      | progress:create | Create a new song   |
-| /api/songrecords/:id | Get       | progress:show   | Get a specific song |
-| /api/songrecords/:id | Put       | progress:upsert | Update a song       |
-| /api/songrecords/:id | Patch     | progress:patch  | Update a data field |
-| /api/songrecords/:id | Delete    | progress:delete | Delete a song       |
+| Routes               | Calls     | Scopes | Description         |
+|:--------------------:|:---------:|:------:|:-------------------:|
+| /api/songrecords     | Get       | index  | Get all songs       |
+| /api/songrecords     | Post      | create | Create a new song   |
+| /api/songrecords/:id | Get       | show   | Get a specific song |
+| /api/songrecords/:id | Put       | upsert | Update a song       |
+| /api/songrecords/:id | Patch     | patch  | Update a data field |
+| /api/songrecords/:id | Delete    | delete | Delete a song       |
 
 - Documentation - Swagger - https://app.swaggerhub.com/apis/tobsirl/RocksmithProgress/1.0.0
 
 ## Schema for Song Record
 ```json
 {
-  songName: {type: String, required: true},
-  artistName: {type: String, required: true},
-  difficulty: {type: Number, min: 0, max: 100, required: true},
-  speed: {type: Number, min: 0, max: 100, required: true},
-  levelUp: {type: Boolean},
-  accelerate: {type: Boolean},
-  advancedSettings: [advancedSettingsSchema],
-  dateCreated: {type: Date, required: true, default: Date.now}
+  "songName": "{type: String, required: true}"
+  "artistName": "{type: String, required: true}"
+  "difficulty": "{type: Number, min: 0, max: 100, required: true}"
+  "speed": "{type: Number, min: 0, max: 100, required: true}"
+  "levelUp": "{type: Boolean}"
+  "accelerate": "{type: Boolean}"
+  "advancedSettings": "[advancedSettingsSchema]"
+  "dateCreated": "{type: Date, required: true, default: Date.now}"
 
-  difficultyRepeats: {type: String, enum: ['Infinite', '1', '2', '3', '5']},
-  speedRepeats: {type: String, enum: ['Infinite', '1', '2', '3', '5']},
-  tolerance: {type: String, enum: ['None', 'Low', 'Med', 'High']},
-  speedIncrement: {type: Number, min: 1, max: 20},
-  rewindAnimation: {type: Boolean},
-  masterMode: {type: Boolean},
-  autoContinue: {type: Boolean},
-  showMistakes: {type: Boolean}
+  "difficultyRepeats": "{type: String, enum: ['Infinite', '1', '2', '3', '5']}"
+  "speedRepeats": "{type: String, enum: ['Infinite', '1', '2', '3', '5']}"
+  "tolerance": "{type: String, enum: ['None', 'Low', 'Med', 'High']}"
+  "speedIncrement": "{type: Number, min: 1, max: 20}"
+  "rewindAnimation": "{type: Boolean}"
+  "masterMode": "{type: Boolean}"
+  "autoContinue": "{type: Boolean}"
+  "showMistakes": "{type: Boolean}"
 }
 ```
 
