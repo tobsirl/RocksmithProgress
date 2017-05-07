@@ -30,8 +30,8 @@ const paths = {
     images: `${clientPath}/assets/images/**/*`,
     revManifest: `${clientPath}/assets/rev-manifest.json`,
     scripts: [
-        `${clientPath}/**/!(*.spec|*.mock).js`
-      ],
+      `${clientPath}/**/!(*.spec|*.mock).js`
+    ],
     styles: [`${clientPath}/{app,components}/**/*.css`],
     mainStyle: `${clientPath}/app/app.css`,
     views: `${clientPath}/{app,components}/**/*.html`,
@@ -41,14 +41,14 @@ const paths = {
   },
   server: {
     scripts: [
-        `${serverPath}/**/!(*.spec|*.integration).js`,
-        `!${serverPath}/config/local.env.sample.js`
-      ],
+      `${serverPath}/**/!(*.spec|*.integration).js`,
+      `!${serverPath}/config/local.env.sample.js`
+    ],
     json: [`${serverPath}/**/*.json`],
     test: {
-        integration: [`${serverPath}/**/*.integration.js`, 'mocha.global.js'],
-        unit: [`${serverPath}/**/*.spec.js`, 'mocha.global.js']
-      }
+      integration: [`${serverPath}/**/*.integration.js`, 'mocha.global.js'],
+      unit: [`${serverPath}/**/*.spec.js`, 'mocha.global.js']
+    }
   },
   karma: 'karma.conf.js',
   dist: 'dist'
@@ -137,7 +137,7 @@ let transpileServer = lazypipe()
 let mocha = lazypipe()
     .pipe(plugins.mocha, {
       reporter: 'spec',
-      timeout: 5000,
+      timeout: 120000, //set to 120000 for 2 mins
       require: [
         './mocha.conf'
       ]
@@ -148,11 +148,11 @@ let istanbul = lazypipe()
     .pipe(plugins.istanbulEnforcer, {
       thresholds: {
         global: {
-            lines: 80,
-            statements: 80,
-            branches: 80,
-            functions: 80
-          }
+          lines: 80,
+          statements: 80,
+          branches: 80,
+          functions: 80
+        }
       },
       coverageDirectory: './coverage',
       rootDirectory: ''
@@ -167,8 +167,8 @@ gulp.task('env:all', () => {
   try {
     localConfig = require(`./${serverPath}/config/local.env`);
   } catch(e) {
-      localConfig = {};
-    }
+    localConfig = {};
+  }
   plugins.env({
     vars: localConfig
   });
@@ -444,9 +444,9 @@ gulp.task('test:client', done => {
     configFile: `${__dirname}/${paths.karma}`,
     singleRun: true
   }, err => {
-      done(err);
-      process.exit(err);
-    }).start();
+    done(err);
+    process.exit(err);
+  }).start();
 });
 
 /********************
@@ -515,15 +515,15 @@ gulp.task('copy:extras', () => {
 function flatten() {
   return through2.obj(function(file, enc, next) {
     if(!file.isDirectory()) {
-        try {
-            let dir = path.dirname(file.relative).split(path.sep)[0];
-            let fileName = path.normalize(path.basename(file.path));
-            file.path = path.join(file.base, path.join(dir, fileName));
-            this.push(file);
-          } catch(e) {
-              this.emit('error', new Error(e));
-            }
-      }
+      try {
+          let dir = path.dirname(file.relative).split(path.sep)[0];
+          let fileName = path.normalize(path.basename(file.path));
+          file.path = path.join(file.base, path.join(dir, fileName));
+          this.push(file);
+        } catch(e) {
+            this.emit('error', new Error(e));
+          }
+    }
     next();
   });
 }
@@ -557,24 +557,24 @@ gulp.task('copy:server', () => {
 grunt.initConfig({
   buildcontrol: {
     options: {
-        dir: paths.dist,
-        commit: true,
-        push: true,
-        connectCommits: false,
-        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-      },
+      dir: paths.dist,
+      commit: true,
+      push: true,
+      connectCommits: false,
+      message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+    },
     heroku: {
-        options: {
-            remote: 'heroku',
-            branch: 'master'
-          }
-      },
+      options: {
+          remote: 'heroku',
+          branch: 'master'
+        }
+    },
     openshift: {
-        options: {
-            remote: 'openshift',
-            branch: 'master'
-          }
-      }
+      options: {
+          remote: 'openshift',
+          branch: 'master'
+        }
+    }
   }
 });
 

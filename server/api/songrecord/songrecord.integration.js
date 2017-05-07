@@ -52,9 +52,12 @@ describe('Songrecord API:', function() {
     });
 
     it('should respond with the newly created songrecord', function() {
+      newSongrecord.should.have.property('songName', 'Today');
       newSongrecord.songName.should.equal('Today');
       newSongrecord.artistName.should.equal('Smashing Pumpkins');
       newSongrecord.difficulty.should.equal(100);
+      newSongrecord.should.have.property('difficulty');
+      newSongrecord.difficulty.should.be.within(0, 100);
       newSongrecord.speed.should.equal(100);
     });
   });
@@ -95,8 +98,10 @@ describe('Songrecord API:', function() {
       request(app)
         .put(`/api/songrecords/${newSongrecord._id}`)
         .send({
-          name: 'Updated Songrecord',
-          info: 'This is the updated songrecord!!!'
+          songName: 'Alive',
+          artistName: 'Pearl Jam',
+          difficulty: 100,
+          speed: 100
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -114,10 +119,10 @@ describe('Songrecord API:', function() {
     });
 
     it('should respond with the updated songrecord', function() {
-      newSongrecord.songName.should.equal('Today');
-      newSongrecord.artistName.should.equal('Smashing Pumpkins');
-      newSongrecord.difficulty.should.equal(100);
-      newSongrecord.speed.should.equal(100);
+      updatedSongrecord.songName.should.equal('Alive');
+      updatedSongrecord.artistName.should.equal('Pearl Jam');
+      updatedSongrecord.difficulty.should.equal(100);
+      updatedSongrecord.speed.should.equal(100);
       //updatedSongrecord.name.should.equal('Updated Songrecord');
       //updatedSongrecord.info.should.equal('This is the updated songrecord!!!');
     });
@@ -132,8 +137,8 @@ describe('Songrecord API:', function() {
             return done(err);
           }
           let songrecord = res.body;
-          songrecord.songName.should.equal('Today');
-          songrecord.artistName.should.equal('Smashing Pumpkins');
+          songrecord.songName.should.equal('Alive');
+          songrecord.artistName.should.equal('Pearl Jam');
           songrecord.difficulty.should.equal(100);
           songrecord.speed.should.equal(100);
           //songrecord.name.should.equal('Updated Songrecord');
@@ -151,7 +156,7 @@ describe('Songrecord API:', function() {
       request(app)
         .patch(`/api/songrecords/${newSongrecord._id}`)
         .send([
-          { op: 'replace', path: '/songName', value: 'Today' },
+          { op: 'replace', path: '/songName', value: 'Disarm' },
           { op: 'replace', path: '/artistName', value: 'Smashing Pumpkins' }
         ])
         .expect(200)
@@ -170,7 +175,7 @@ describe('Songrecord API:', function() {
     });
 
     it('should respond with the patched songrecord', function() {
-      patchedSongrecord.songName.should.equal('Today');
+      patchedSongrecord.songName.should.equal('Disarm');
       patchedSongrecord.artistName.should.equal('Smashing Pumpkins');
     });
   });
