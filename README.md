@@ -22,22 +22,22 @@ https://www.youtube.com/watch?v=XHM9uB2kNkU
 ## Schema for Song Record
 ```json
 {
-  "songName": "{type: String, required: true}"
-  "artistName": "{type: String, required: true}"
-  "difficulty": "{type: Number, min: 0, max: 100, required: true}"
-  "speed": "{type: Number, min: 0, max: 100, required: true}"
-  "levelUp": "{type: Boolean}"
-  "accelerate": "{type: Boolean}"
-  "advancedSettings": "[advancedSettingsSchema]"
-  "dateCreated": "{type: Date, required: true, default: Date.now}"
+  "songName": "{type: String, required: true}",
+  "artistName": "{type: String, required: true}",
+  "difficulty": "{type: Number, min: 0, max: 100, required: true}",
+  "speed": "{type: Number, min: 0, max: 100, required: true}",
+  "levelUp": "{type: Boolean}",
+  "accelerate": "{type: Boolean}",
+  "advancedSettings": "[advancedSettingsSchema]",
+  "dateCreated": "{type: Date, required: true, default: Date.now}",
 
-  "difficultyRepeats": "{type: String, enum: ['Infinite', '1', '2', '3', '5']}"
-  "speedRepeats": "{type: String, enum: ['Infinite', '1', '2', '3', '5']}"
-  "tolerance": "{type: String, enum: ['None', 'Low', 'Med', 'High']}"
-  "speedIncrement": "{type: Number, min: 1, max: 20}"
-  "rewindAnimation": "{type: Boolean}"
-  "masterMode": "{type: Boolean}"
-  "autoContinue": "{type: Boolean}"
+  "difficultyRepeats": "{type: String, enum: ['Infinite', '1', '2', '3', '5']}",
+  "speedRepeats": "{type: String, enum: ['Infinite', '1', '2', '3', '5']}",
+  "tolerance": "{type: String, enum: ['None', 'Low', 'Med', 'High']}",
+  "speedIncrement": "{type: Number, min: 1, max: 20}",
+  "rewindAnimation": "{type: Boolean}",
+  "masterMode": "{type: Boolean}",
+  "autoContinue": "{type: Boolean}",
   "showMistakes": "{type: Boolean}"
 }
 ```
